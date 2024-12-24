@@ -1,26 +1,22 @@
-"use client"
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+"use client";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { Kings } from "next/font/google";
 
 const kings = Kings({ subsets: ["latin"], weight: ["400"] });
 
-import { 
+import {
   DropdownMenu,
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
-  DropdownMenuContent
-} from "@/components/ui/dropdown-menu"
+  DropdownMenuContent,
+} from "@/components/ui/dropdown-menu";
 
-import { Button } from "@/components/ui/button"
-import { ModeToggle } from "@/components/ThemeSwitch"
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { ModeToggle } from "@/components/ThemeSwitch";
 
 const containerVariants = {
   hidden: { opacity: 0, x: -50 },
@@ -57,7 +53,7 @@ export default function Page() {
     "https://github.com/z1g-project/ephemeral",
     "https://github.com/anshnk/Phoenix",
     "https://github.com/anshnk/portfolio",
-    "https://github.com/anshnk/newsite"
+    "https://github.com/anshnk/newsite",
   ];
 
   const [randomProjectUrl, setRandomProjectUrl] = useState(projectUrls[0]);
@@ -82,7 +78,7 @@ export default function Page() {
           </Avatar>
         </motion.div>
         <motion.div
-          className={`${kings.className} text-4xl font-bold mb-1 text-left`}
+          className="text-4xl font-bold mb-2 text-left"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -90,7 +86,7 @@ export default function Page() {
           anshnk
         </motion.div>
         <motion.p
-          className="text-lg mb-3 italic text-left"
+          className="text-lg mb-4 text-left"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -104,45 +100,57 @@ export default function Page() {
         >
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button className="w-[100px] mb-10">
-                Contact Me
-              </Button>
+              <Button className="w-[100px] mb-4">Contact Me</Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuItem asChild>
-                <a href="https://discordapp.com/users/593497381820039187" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://discordapp.com/users/593497381820039187"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Discord
                 </a>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <a href="mailto:ansh@anshnk.dev">
-                  Email
-                </a>
+                <a href="mailto:ansh@anshnk.dev">Email</a>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </motion.div>
         <motion.p
-          className="max-w-md mb-2 text-left"
+          className="max-w-md mb-8 text-left"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          Hey, I'm Ansh. I'm 13yrs old and I like coding. It's more of a hobby for me but I'm okay at it. This is my first submission for Hack Club High Seas.
+          Hey, I'm Ansh. I'm 13yrs old and I like coding. It's more of a hobby
+          for me but I'm okay at it. This is my first submission for Hack Club
+          High Seas.
         </motion.p>
         <motion.div
           variants={bottomVariants}
           initial="hidden"
           animate="visible"
+          className="inline"
         >
           <ModeToggle />
-          <Button className="ml-4 mt-4" onClick={handleRandomizeProject}>
-            A project I've worked on or made!
-          </Button>
         </motion.div>
-        
+        <motion.a
+          href={randomProjectUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          variants={bottomVariants}
+          initial="hidden"
+          animate="visible"
+          className="inline"
+        >
+          <Button className="ml-4 mt-4 inline" onClick={handleRandomizeProject}>
+            A random project I have worked on!
+          </Button>
+        </motion.a>
       </div>
     </div>
-  )
+  );
 }
